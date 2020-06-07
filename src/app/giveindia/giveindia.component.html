@@ -1,0 +1,28 @@
+<form class="form">
+    <mat-form-field class="custom-field">
+        <mat-label>Please enter youtube link to the queue</mat-label>
+        <input matInput placeholder="https://www.youtube.com/embed/lsLUPWW3IVw" name="youtubelink" [(ngModel)]="url">
+        <br>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="get_youtubeId()">Add Link</button>
+
+</form>
+
+
+<youtube-player [videoId]="id" height=80% width=100% (ready)="savePlayer($event)" (change)="onStateChange($event)"
+    [playerVars]="playerVars">
+</youtube-player>
+
+
+
+<div>
+    <h2>Youtube Playlist</h2>
+    <ul>
+        <li *ngFor="let link of youtubeLinks;let i=index">
+            <b>Youtube Link ID {{i}}: </b>{{link}} &nbsp; &nbsp; <span style="cursor: pointer;"
+                (click)="deleteLink(i)"><b>&times;</b></span>
+        </li>
+
+    </ul>
+</div>
